@@ -3,7 +3,7 @@
 Sistema de gestión para el restaurante **"Sabores del Sur"**, implementado en Python siguiendo una arquitectura en capas (DAO, Modelos y Servicios) y el modelo de referencia UML del proyecto.
 
 **Equipo:** Elías Barraza & Patricia Magaña  
-**Asignatura / Contexto:** ES1 TI3V21 114-2A-F2
+**Asignatura:/Programacion orientada a objeto seguro **  TI3V21 114-2A-F2
 
 ---
 
