@@ -4,6 +4,7 @@ from .item_menu import ItemMenu
 from .mesa import Mesa
 from .trabajador import Mesero
 from .boleta import Boleta
+from .excepciones import ReglaNegocioException
 
 class DetallePedido:
     def __init__(self, item_menu: ItemMenu, cantidad: int = 1, observacion: str = "", esta_listo: bool = False):
@@ -53,8 +54,10 @@ class Pedido:
 
     def agregarDetalle(self, item: ItemMenu, cant: int, obs: str = "") -> bool:
         if self.estado != "Abierto":
-            print(f"[Pedido #{self.numeroPedido}] No se pueden agregar items a un pedido cerrado.")
-            return False
+            raise ReglaNegocioException(f"[Pedido #{self.numeroPedido}] No se pueden agregar items a un pedido cerrado.")
+        # Validación de regla de negocio: verificar stock de ingredientes (P15)
+        if not item.verificarStockIngredientes():
+            raise ReglaNegocioException(f"Operación impedida: No hay stock suficiente para uno de los ingredientes clave de '{item.nombre}'.")
         detalle = DetallePedido(item_menu=item, cantidad=cant, observacion=obs)
         self.detalles.append(detalle)
         return True
